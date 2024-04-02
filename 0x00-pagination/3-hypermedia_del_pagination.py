@@ -14,6 +14,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """dd"""
         self.__dataset = None
         self.__indexed_dataset = None
 
@@ -40,7 +41,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> dict:
-        '''hyperindex'''
+        """hyperindex"""
         assert isinstance(index, int) and 0 < index < len(self.__dataset)
         # assert index is None or 0 <= index < len(self.__dataset)
         dataset = self.dataset()
