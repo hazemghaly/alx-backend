@@ -41,15 +41,16 @@ class Server:
         start_index = (page - 1) * page_size
         end_index = start_index + page_size
         dataset = self.dataset()
-        total_pages = len(dataset) // page_size + (1 if len(dataset) % page_size != 0 else 0)
+        total_pages = len(dataset) // page_size + (
+            1 if len(dataset) % page_size != 0 else 0)
         data = dataset[start_index:end_index]
         next_page = page + 1 if end_index < len(dataset) else None
         prev_page = page - 1 if start_index > 0 else None
         return {
-        'page_size': len(data),
-        'page': page,
-        'data': data,
-        'next_page': next_page,
-        'prev_page': prev_page,
-        'total_pages': total_pages
-    }
+            'page_size': len(data),
+            'page': page,
+            'data': data,
+            'next_page': next_page,
+            'prev_page': prev_page,
+            'total_pages': total_pages
+        }
