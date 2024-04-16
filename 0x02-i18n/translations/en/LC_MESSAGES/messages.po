@@ -5,8 +5,7 @@
 #
 msgid ""
 msgstr ""
-"home_title: Welcome to Holberton"
-"home_header: Hello world!"
+
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-16 03:59+0200\n"
@@ -20,3 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
+msgid "home_title"
+msgstr "Welcome to Holberton"
+
+msgid "home_header"
+msgstr "Hello world!"
