@@ -3,9 +3,7 @@
 """
 
 from flask import Flask, render_template, session, request
-from flask_babel import Babel
-import gettext
-
+from flask_babel import Babel, gettext
 
 app = Flask(__name__)
 
@@ -34,9 +32,13 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'].keys())
 
 
+babel.init_app(app, locale_selector=get_locale)
+
+
 @app.route("/")
 def home():
     """home function define yor title and header"""
-    title = gettext("Welcome to Holberton")
-    header = gettext("Welcome to our website!")
+    title = gettext("home_title")
+    header = gettext("home_header")
+
     return render_template("3-index.html", title=title, header=header)
