@@ -26,7 +26,7 @@ app.config.from_object(Config)
 
 
 def get_locale():
-    """    """determine language if it is fr or en
+    """ determine language if it is fr or en
     """
     locale_p = request.args.get('locale')
     if locale_p and locale_p in app.config['LANGUAGES']:
