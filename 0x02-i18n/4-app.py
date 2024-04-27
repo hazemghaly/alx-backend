@@ -17,6 +17,7 @@ babel = Babel(app)
 
 class Config:
     """Configurations for the Flask app."""
+    DEBUG = True
     BABEL_TRANSLATION_DIRECTORIES = 'translations'
     LANGUAGES = ["en", "fr"]
     local_lang = 'en'
@@ -25,19 +26,25 @@ class Config:
 
 app.config.from_object(Config)
 
+
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """determine language"""
-    locale_p = request.args.get('locale')
-    if locale_p and locale_p in app.config['LANGUAGES']:
-        return locale_p
+    locale = request.args.get('locale')
+    if locale in app.config['LANGUAGES']:
+        return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-# babel.init_app(app, locale_selector=get_locale)
 @app.route("/")
-def home():
+def home() -> str:
     """home function define yor title and header"""
     title = _('home_title')
     header = _('home_header')
     return render_template("4-index.html", title=title, header=header)
+
+
+# babel.init_app(app, locale_selector=get_locale)
+
+if __name__ == "__main__":
+    app.run()
