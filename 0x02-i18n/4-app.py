@@ -38,7 +38,7 @@ def get_locale() -> str:
 
 @app.route("/")
 def home() -> str:
-    """home function define yor title and header"""
+    """Render the home page with translated title and header."""
     title = _('home_title')
     header = _('home_header')
     return render_template("4-index.html", title=title, header=header)
