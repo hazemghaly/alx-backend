@@ -6,7 +6,7 @@ resort to the previous default behavior.
 """
 
 from flask import Flask, render_template, session, request
-from flask_babel import Babel
+from flask_babel import Babel, get_locale
 from flask_babel import gettext as _
 
 
@@ -17,6 +17,7 @@ babel = Babel(app)
 
 class Config:
     """Configurations for the Flask app."""
+    BABEL_TRANSLATION_DIRECTORIES = 'translations'
     LANGUAGES = ["en", "fr"]
     local_lang = 'en'
     TIMEZONE = 'UTC'
@@ -26,8 +27,7 @@ app.config.from_object(Config)
 
 
 def get_locale():
-    """ determine language if it is fr or en
-    """
+    """determine language"""
     locale_p = request.args.get('locale')
     if locale_p and locale_p in app.config['LANGUAGES']:
         return locale_p
@@ -40,7 +40,6 @@ babel.init_app(app, locale_selector=get_locale)
 @app.route("/")
 def home():
     """home function define yor title and header"""
-    title = _("home_title")
-    header = _("home_header")
-
+    title = _('home_title')
+    header = _('home_header')
     return render_template("4-index.html", title=title, header=header)
