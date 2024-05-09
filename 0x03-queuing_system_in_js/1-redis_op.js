@@ -11,7 +11,7 @@ function setNewSchool(schoolName,value){
     if (err) {
       console.error('Error setting school value:', err);
     } else {
-      console.log(reply);
+      console.log(`Replay: ${reply}`);
     }
   });}
 
