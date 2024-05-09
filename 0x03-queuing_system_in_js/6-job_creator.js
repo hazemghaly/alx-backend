@@ -15,8 +15,3 @@ job.on('enqueue', () => {
 		console.log('Notification job completed');
 	});
 job.save();
-
-
-
-
-
