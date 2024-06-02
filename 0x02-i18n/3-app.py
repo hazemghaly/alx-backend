@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""basic flask app
+"""detect if the incoming request contains locale argument
+and ifs value is a supported locale,
+return it. If not or if the parameter is not present,
+resort to the previous default behavior.
 """
 
 from flask import Flask, render_template, session, request
