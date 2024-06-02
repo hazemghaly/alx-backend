@@ -3,7 +3,8 @@
 """
 
 from flask import Flask, render_template, session, request
-from flask_babel import Babel, gettext
+from flask_babel import Babel
+from flask_babel import gettext as _
 
 app = Flask(__name__)
 
@@ -21,20 +22,17 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale():
-    """determine language if it is fr or en"""
-    try:
-        language = session['language']
-    except KeyError:
-        language = None
-    if language is not None:
-        return language
+def get_locale() -> str:
+    """
+    Gets locale from request object
+    """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route("/")
 def home():
-    '''Render the home page with translated title and header.'''
-    title = gettext("home_title")
-    header = gettext("home_header")
+    """home function define yor title and header"""
+    title = _("home_title")
+    header = _("home_header")
+
     return render_template("3-index.html", title=title, header=header)
