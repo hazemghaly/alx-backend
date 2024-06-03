@@ -43,7 +43,7 @@ def home():
     '''
     home function define yor title and header
 
-    Rerturn 
+    Rerturn
         3-index
     '''
     return render_template("3-index.html")
