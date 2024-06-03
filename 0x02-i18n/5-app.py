@@ -75,7 +75,3 @@ def home() -> str:
     title = _('home_title')
     header = _('home_header')
     return render_template("5-index.html", title=title, header=header)
-
-
-if __name__ == "__main__":
-    app.run()
