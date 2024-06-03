@@ -6,7 +6,7 @@ from typing import (
 )
 from flask import Flask, render_template, session, request, g
 from flask_babel import Babel, get_locale
-from flask_babel import gettext as _
+# from flask_babel import gettext as _
 
 
 app = Flask(__name__)
@@ -33,28 +33,21 @@ users = {
 }
 
 
-def get_user(id) -> Union[Dict[str, Union[str, None]], None]:
+def get_user() -> Union[Dict, None]:
+    """Retrieves a user based on a user id.
     """
-    Validate user login details
-    Args:
-        id (str): user id
-    Returns:
-        (Dict): user dictionary if id is valid else None
-    """
-    return users.get(int(id), 0)
+    login_id = request.args.get('login_as')
+    if login_id:
+        return users.get(int(login_id))
+    return None
 
 
 @app.before_request
-def load_user():
-    user_id = request.args.get('login_as')
-    if user_id:
-        user = get_user(int(user_id))
-        if user:
-            g.user = user
-        else:
-            g.user = None
-    else:
-        g.user = None
+def before_request() -> None:
+    """Performs some routines before each request's resolution.
+    """
+
+    g.user = get_user()
 
 
 @babel.localeselector
@@ -62,6 +55,9 @@ def get_locale() -> str:
     '''
     determine language
     you should be able to test different translations
+
+    Returns:
+        str: best match
     '''
     locale = request.args.get('locale', '').strip()
     if locale in app.config['LANGUAGES']:
@@ -71,7 +67,14 @@ def get_locale() -> str:
 
 @app.route("/")
 def home() -> str:
-    """home function define yor title and header"""
-    title = _('home_title')
-    header = _('home_header')
-    return render_template("5-index.html", title=title, header=header)
+    ''''
+    home function define yor title and header
+
+    Returns:
+        html: homepage
+    '''
+    return render_template("5-index.html")
+
+
+if __name__ == "__main__":
+    app.run()
