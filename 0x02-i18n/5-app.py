@@ -6,12 +6,7 @@ from typing import (
 )
 from flask import Flask, render_template, session, request, g
 from flask_babel import Babel, get_locale
-# from flask_babel import gettext as _
-
-
-app = Flask(__name__)
-
-babel = Babel(app)
+from flask_babel import gettext as _
 
 
 class Config:
@@ -23,6 +18,9 @@ class Config:
     TIMEZONE = 'UTC'
 
 
+app = Flask(__name__)
+
+babel = Babel(app)
 app.config.from_object(Config)
 
 users = {
@@ -73,7 +71,9 @@ def home() -> str:
     Returns:
         html: homepage
     '''
-    return render_template("5-index.html")
+    header = _('home_header')
+    title = _('home_title')
+    return render_template("5-index.html", title = title , header = header)
 
 
 if __name__ == "__main__":
