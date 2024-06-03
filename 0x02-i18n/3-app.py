@@ -29,7 +29,11 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale() -> str:
     '''
-    Gets locale from request object
+    determine language
+    you should be able to test different translations
+
+    Returns:
+        str: best match
     '''
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -38,8 +42,8 @@ def get_locale() -> str:
 def home():
     '''
     home function define yor title and header
-    '''
-    title = _("home_title")
-    header = _("home_header")
 
-    return render_template("3-index.html", title=title, header=header)
+    Rerturn 
+        3-index
+    '''
+    return render_template("3-index.html")
