@@ -7,7 +7,7 @@ resort to the previous default behavior.
 
 from flask import Flask, render_template, session, request
 from flask_babel import Babel
-from flask_babel import gettext as _
+# from flask_babel import gettext as _
 
 
 app = Flask(__name__)
@@ -34,6 +34,9 @@ def get_locale() -> str:
     '''
     determine language
     you should be able to test different translations
+
+    Returns:
+        str: best match
     '''
     locale = request.args.get('locale', '').strip()
     if locale in app.config['LANGUAGES']:
@@ -45,7 +48,8 @@ def get_locale() -> str:
 def home() -> str:
     ''''
     home function define yor title and header
+
+    Returns:
+        str: render
     '''
-    title = _('home_title')
-    header = _('home_header')
-    return render_template("4-index.html", title=title, header=header)
+    return render_template("4-index.html")
