@@ -69,11 +69,13 @@ def home() -> str:
     home function define yor title and header
 
     Returns:
-        html: homepage
+        html: homepage 
+        title
+        header
     '''
     header = _('home_header')
     title = _('home_title')
-    return render_template("5-index.html", title = title , header = header)
+    return render_template("5-index.html", title=title, header=header)
 
 
 if __name__ == "__main__":
