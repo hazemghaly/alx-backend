@@ -7,7 +7,7 @@ resort to the previous default behavior.
 
 from flask import Flask, render_template, session, request
 from flask_babel import Babel
-from flask_babel import gettext as _
+# from flask_babel import gettext as _
 
 app = Flask(__name__)
 
